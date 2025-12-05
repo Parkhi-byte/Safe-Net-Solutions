@@ -1,0 +1,110 @@
+.overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(12, 20, 40, 0.8);
+  display: grid;
+  place-items: center;
+  z-index: 1000;
+  padding: 1rem;
+}
+
+.modal {
+  background: #fff;
+  border-radius: 20px;
+  width: min(560px, 100%);
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+header h3 {
+  margin: 0;
+}
+
+header p {
+  margin: 0.3rem 0 0;
+  color: #6b7ca7;
+  font-size: 0.9rem;
+}
+
+header button {
+  border: none;
+  background: #f0f3ff;
+  border-radius: 999px;
+  padding: 0.4rem 1rem;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
+}
+
+label {
+  display: flex;
+  flex-direction: column;
+  font-size: 0.85rem;
+  color: #27345a;
+  gap: 0.4rem;
+}
+
+input[type='text'],
+input[type='number'],
+input[type='datetime-local'],
+select {
+  border-radius: 12px;
+  border: 1px solid #dfe6fb;
+  padding: 0.6rem 0.8rem;
+}
+
+.permissions {
+  display: flex;
+  gap: 1rem;
+}
+
+.permissions label {
+  flex-direction: row;
+  align-items: center;
+  gap: 0.3rem;
+}
+
+.inline {
+  flex-direction: row;
+  align-items: center;
+}
+
+.primary {
+  border: none;
+  border-radius: 14px;
+  background: linear-gradient(120deg, #23b3ff, #7cffcb);
+  padding: 0.8rem;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.linkPreview {
+  background: #f5f8ff;
+  border: 1px solid #dfe6fb;
+  border-radius: 12px;
+  padding: 0.8rem;
+}
+
+.linkPreview code {
+  display: block;
+  margin-top: 0.4rem;
+  padding: 0.4rem 0.6rem;
+  background: #fff;
+  border-radius: 8px;
+  font-size: 0.9rem;
+}
+

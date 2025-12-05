@@ -1,0 +1,117 @@
+.filter {
+  margin-bottom: 2rem;
+}
+
+.categories {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  align-items: center;
+}
+
+.categoryButton {
+  padding: 0.625rem 1.25rem;
+  border: 2px solid var(--category-color);
+  border-radius: 20px;
+  font-size: 0.875rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: var(--transition);
+  background: transparent;
+  color: var(--category-color);
+}
+
+.categoryButton:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.categoryButton.active {
+  background: var(--category-color);
+  color: #ffffff;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.addButton {
+  width: 36px;
+  height: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 2px dashed var(--border-color);
+  border-radius: 50%;
+  background: transparent;
+  color: var(--text-light);
+  font-size: 1.5rem;
+  cursor: pointer;
+  transition: var(--transition);
+}
+
+.addButton:hover {
+  border-color: var(--primary-blue);
+  color: var(--primary-blue);
+  transform: rotate(90deg);
+}
+
+.addForm {
+  display: flex;
+  gap: 0.5rem;
+  margin-top: 1rem;
+  padding: 1rem;
+  background: var(--bg-light);
+  border-radius: 8px;
+}
+
+.addInput {
+  flex: 1;
+  padding: 0.75rem;
+  border: 2px solid var(--border-color);
+  border-radius: 8px;
+  font-size: 0.95rem;
+}
+
+.addInput:focus {
+  outline: none;
+  border-color: var(--primary-blue);
+}
+
+.addSubmit,
+.addCancel {
+  padding: 0.75rem 1.25rem;
+  border: none;
+  border-radius: 8px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: var(--transition);
+}
+
+.addSubmit {
+  background: var(--primary-blue);
+  color: var(--text-white);
+}
+
+.addSubmit:hover {
+  background: var(--primary-blue-light);
+}
+
+.addCancel {
+  background: var(--bg-white);
+  color: var(--text-dark);
+  border: 2px solid var(--border-color);
+}
+
+.addCancel:hover {
+  background: var(--border-color);
+}
+
+@media (max-width: 640px) {
+  .categories {
+    gap: 0.5rem;
+  }
+
+  .categoryButton {
+    padding: 0.5rem 1rem;
+    font-size: 0.8rem;
+  }
+}
+

@@ -1,0 +1,151 @@
+.wrapper {
+  padding: 1.5rem;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  color: #fff;
+  margin-bottom: 1.5rem;
+}
+
+.header h3 {
+  margin: 0;
+  font-size: 1.25rem;
+}
+
+.header p {
+  margin: 0.25rem 0 0;
+  font-size: 0.85rem;
+  color: rgba(255, 255, 255, 0.7);
+}
+
+.badge {
+  background: rgba(46, 204, 113, 0.2);
+  padding: 0.35rem 0.75rem;
+  border-radius: 999px;
+  font-size: 0.85rem;
+  color: #2ecc71;
+}
+
+.search input {
+  width: 100%;
+  padding: 0.65rem 1rem;
+  border-radius: 999px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  background: rgba(255, 255, 255, 0.05);
+  color: #fff;
+  outline: none;
+  transition: border 0.2s ease;
+}
+
+.search input:focus {
+  border-color: rgba(46, 204, 113, 0.5);
+}
+
+.list {
+  list-style: none;
+  padding: 0;
+  margin: 1.5rem 0 0;
+  overflow-y: auto;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.contact {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.75rem;
+  border-radius: 16px;
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid transparent;
+  cursor: pointer;
+  transition: all 0.25s ease;
+  position: relative;
+}
+
+.contact:hover,
+.active {
+  background: rgba(46, 204, 113, 0.08);
+  border-color: rgba(46, 204, 113, 0.4);
+}
+
+.avatar {
+  width: 48px;
+  height: 48px;
+  border-radius: 16px;
+  background: rgba(255, 255, 255, 0.12);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 600;
+  position: relative;
+}
+
+.statusDot {
+  position: absolute;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  border: 2px solid #14263f;
+  bottom: -2px;
+  right: -2px;
+}
+
+.meta {
+  flex: 1;
+  color: #fff;
+}
+
+.metaTop,
+.metaBottom {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.metaBottom span {
+  font-size: 0.8rem;
+  color: rgba(255, 255, 255, 0.6);
+}
+
+.typing {
+  color: #2ecc71;
+  font-weight: 600;
+}
+
+.unread {
+  min-width: 24px;
+  height: 24px;
+  border-radius: 999px;
+  background: #2ecc71;
+  color: #0d1b2a;
+  font-size: 0.8rem;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  margin-left: 0.5rem;
+}
+
+.verified {
+  font-size: 0.7rem;
+  padding: 0.15rem 0.35rem;
+  border-radius: 999px;
+  background: rgba(0, 173, 241, 0.2);
+  color: #00adf1;
+  margin-left: 0.35rem;
+}
+
+.empty {
+  text-align: center;
+  color: rgba(255, 255, 255, 0.6);
+}
+
+

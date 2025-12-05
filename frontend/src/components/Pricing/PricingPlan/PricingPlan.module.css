@@ -1,0 +1,132 @@
+.card {
+  background: #fff;
+  border-radius: 20px;
+  padding: 2rem;
+  border: 1px solid rgba(13, 27, 42, 0.08);
+  box-shadow: 0 20px 40px rgba(15, 33, 53, 0.08);
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  overflow: hidden;
+  min-height: 100%;
+}
+
+.popular {
+  border-color: rgba(0, 173, 241, 0.4);
+  box-shadow: 0 25px 50px rgba(0, 173, 241, 0.25);
+}
+
+.ribbon {
+  position: absolute;
+  top: 1.5rem;
+  right: -3rem;
+  background: linear-gradient(120deg, #00adf1, #1dd1a1);
+  color: #fff;
+  padding: 0.35rem 3.5rem;
+  transform: rotate(35deg);
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  font-weight: 700;
+}
+
+.header h3 {
+  margin: 0;
+  font-size: 1.4rem;
+  color: #0f2135;
+}
+
+.header p {
+  margin-top: 0.35rem;
+  color: rgba(15, 33, 53, 0.65);
+}
+
+.priceRow {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin: 1.5rem 0;
+}
+
+.price span {
+  font-size: 2.5rem;
+  font-weight: 800;
+  color: #0f2135;
+}
+
+.price small {
+  color: rgba(15, 33, 53, 0.6);
+  margin-left: 0.35rem;
+}
+
+.discount {
+  background: rgba(29, 209, 161, 0.15);
+  color: #0f8c6c;
+  padding: 0.35rem 0.75rem;
+  border-radius: 999px;
+  font-weight: 600;
+  font-size: 0.9rem;
+}
+
+.featureList {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  color: rgba(15, 33, 53, 0.75);
+}
+
+.featureList li {
+  position: relative;
+  padding-left: 1.5rem;
+}
+
+.featureList li::before {
+  content: '✓';
+  position: absolute;
+  left: 0;
+  color: #1dd1a1;
+  font-weight: 700;
+}
+
+.cta {
+  background: #0f2135;
+  color: #fff;
+  border: none;
+  padding: 0.85rem 1.25rem;
+  border-radius: 12px;
+  font-weight: 600;
+  font-size: 1rem;
+  margin-top: auto;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.cta:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 25px rgba(15, 33, 53, 0.2);
+}
+
+.popular .cta {
+  background: linear-gradient(120deg, #00adf1, #1dd1a1);
+  color: #04121f;
+}
+
+.note {
+  margin-top: 0.75rem;
+  font-size: 0.85rem;
+  color: rgba(15, 33, 53, 0.6);
+}
+
+@media (max-width: 768px) {
+  .card {
+    padding: 1.5rem;
+  }
+
+  .ribbon {
+    display: none;
+  }
+}
+
+

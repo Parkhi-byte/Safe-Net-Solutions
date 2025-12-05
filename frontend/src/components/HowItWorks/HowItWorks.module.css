@@ -1,0 +1,248 @@
+.howItWorks {
+  padding: 6rem 2rem;
+  background: linear-gradient(180deg, var(--bg-white) 0%, var(--bg-light) 100%);
+  position: relative;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.header {
+  text-align: center;
+  margin-bottom: 4rem;
+}
+
+.title {
+  font-size: 2.5rem;
+  font-weight: 800;
+  color: var(--text-dark);
+  margin-bottom: 1rem;
+  letter-spacing: -0.5px;
+}
+
+.subtitle {
+  font-size: 1.2rem;
+  color: var(--text-light);
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.steps {
+  display: flex;
+  flex-direction: column;
+  gap: 3rem;
+  margin-bottom: 4rem;
+  position: relative;
+}
+
+.step {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 2rem;
+  align-items: start;
+  position: relative;
+}
+
+.stepNumber {
+  font-size: 4rem;
+  font-weight: 800;
+  color: var(--primary-blue);
+  opacity: 0.15;
+  line-height: 1;
+  min-width: 100px;
+}
+
+.stepContent {
+  background: var(--bg-white);
+  border: 2px solid var(--border-color);
+  border-radius: 16px;
+  padding: 2.5rem;
+  transition: var(--transition);
+  position: relative;
+  overflow: hidden;
+}
+
+.stepContent::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 4px;
+  height: 100%;
+  background: linear-gradient(180deg, var(--primary-blue) 0%, var(--accent-green) 100%);
+  transform: scaleY(0);
+  transform-origin: top;
+  transition: transform 0.3s ease;
+}
+
+.step:hover .stepContent::before {
+  transform: scaleY(1);
+}
+
+.step:hover .stepContent {
+  transform: translateX(8px);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+  border-color: var(--primary-blue);
+}
+
+.stepIcon {
+  font-size: 3rem;
+  margin-bottom: 1rem;
+  display: inline-block;
+  transition: var(--transition);
+}
+
+.step:hover .stepIcon {
+  transform: scale(1.1) rotate(5deg);
+}
+
+.stepTitle {
+  font-size: 1.75rem;
+  font-weight: 700;
+  color: var(--text-dark);
+  margin-bottom: 1rem;
+}
+
+.stepDescription {
+  font-size: 1.1rem;
+  line-height: 1.7;
+  color: var(--text-light);
+}
+
+.connector {
+  position: absolute;
+  left: 50px;
+  top: 120px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+  z-index: 1;
+}
+
+.connectorLine {
+  width: 2px;
+  height: 60px;
+  background: linear-gradient(180deg, var(--primary-blue) 0%, var(--accent-green) 100%);
+  opacity: 0.3;
+}
+
+.connectorArrow {
+  font-size: 1.5rem;
+  color: var(--primary-blue);
+  opacity: 0.5;
+  animation: bounce 2s infinite;
+}
+
+@keyframes bounce {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(5px);
+  }
+}
+
+.cta {
+  text-align: center;
+  padding: 3rem 2rem;
+  background: var(--bg-white);
+  border-radius: 16px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+}
+
+.ctaText {
+  font-size: 1.3rem;
+  font-weight: 600;
+  color: var(--text-dark);
+  margin-bottom: 1.5rem;
+}
+
+.ctaButton {
+  display: inline-block;
+  padding: 1rem 2.5rem;
+  background: linear-gradient(135deg, var(--primary-blue) 0%, var(--primary-blue-light) 100%);
+  color: var(--text-white);
+  font-size: 1.1rem;
+  font-weight: 600;
+  border-radius: 12px;
+  box-shadow: 0 8px 24px rgba(26, 77, 122, 0.3);
+  transition: var(--transition);
+}
+
+.ctaButton:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 12px 32px rgba(26, 77, 122, 0.4);
+}
+
+@media (max-width: 968px) {
+  .howItWorks {
+    padding: 4rem 1.5rem;
+  }
+
+  .title {
+    font-size: 2rem;
+  }
+
+  .subtitle {
+    font-size: 1.1rem;
+  }
+
+  .step {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+
+  .stepNumber {
+    font-size: 3rem;
+    min-width: auto;
+    text-align: center;
+  }
+
+  .stepContent {
+    padding: 2rem 1.5rem;
+  }
+
+  .connector {
+    display: none;
+  }
+
+  .stepTitle {
+    font-size: 1.5rem;
+  }
+
+  .stepDescription {
+    font-size: 1rem;
+  }
+}
+
+@media (max-width: 640px) {
+  .steps {
+    gap: 2rem;
+  }
+
+  .stepContent {
+    padding: 1.5rem;
+  }
+
+  .stepIcon {
+    font-size: 2.5rem;
+  }
+
+  .cta {
+    padding: 2rem 1.5rem;
+  }
+
+  .ctaText {
+    font-size: 1.1rem;
+  }
+
+  .ctaButton {
+    width: 100%;
+    padding: 0.875rem 1.5rem;
+    font-size: 1rem;
+  }
+}
+

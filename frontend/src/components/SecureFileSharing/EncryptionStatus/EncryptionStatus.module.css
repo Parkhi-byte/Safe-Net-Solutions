@@ -1,0 +1,52 @@
+.card {
+  background: rgba(255, 255, 255, 0.08);
+  border-radius: 18px;
+  padding: 1rem;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.card h3 {
+  margin: 0;
+}
+
+.card p {
+  margin: 0.3rem 0 1rem;
+  color: #9fb6df;
+}
+
+.badges {
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+}
+
+.badges article {
+  display: flex;
+  align-items: center;
+  gap: 0.7rem;
+  padding: 0.4rem 0.6rem;
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.06);
+}
+
+.dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+}
+
+.ok {
+  background: #7cffcb;
+}
+
+.warn {
+  background: #ffb347;
+}
+
+.footer {
+  margin-top: 1rem;
+  padding-top: 1rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  color: #f7f9ff;
+}
+

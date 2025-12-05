@@ -1,0 +1,135 @@
+.page {
+  padding-top: 120px;
+  padding-bottom: 4rem;
+  background: linear-gradient(180deg, #f6f8fb 0%, #ffffff 60%);
+}
+
+.hero {
+  max-width: 900px;
+  margin: 0 auto;
+  text-align: center;
+  padding: 2rem 1.5rem 3rem;
+}
+
+.kicker {
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  font-size: 0.85rem;
+  color: #00adf1;
+  font-weight: 600;
+  margin-bottom: 1rem;
+}
+
+.hero h1 {
+  font-size: clamp(2.5rem, 5vw, 3.5rem);
+  margin-bottom: 1rem;
+  color: #0f2135;
+}
+
+.subtitle {
+  font-size: 1.15rem;
+  color: rgba(15, 33, 53, 0.7);
+  margin: 0 auto 1.5rem;
+  max-width: 640px;
+}
+
+.heroActions {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  flex-wrap: wrap;
+  margin-top: 1rem;
+}
+
+.primaryAction,
+.secondaryAction {
+  padding: 0.85rem 1.75rem;
+  border-radius: 12px;
+  font-weight: 600;
+}
+
+.primaryAction {
+  background: linear-gradient(120deg, #00adf1, #1dd1a1);
+  color: #04121f;
+}
+
+.secondaryAction {
+  border: 1px solid rgba(15, 33, 53, 0.2);
+  color: #0f2135;
+}
+
+.plans {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 1.5rem;
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 0 1.5rem;
+}
+
+.trust {
+  margin: 4rem auto 0;
+  max-width: 1100px;
+  background: #0f2135;
+  color: #fff;
+  border-radius: 24px;
+  padding: 2rem 2.5rem;
+  display: grid;
+  grid-template-columns: 1.5fr 1fr;
+  gap: 2rem;
+  align-items: center;
+}
+
+.trust p {
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  font-size: 0.85rem;
+  color: rgba(255, 255, 255, 0.7);
+}
+
+.trust h3 {
+  margin-top: 0.5rem;
+  font-size: 1.9rem;
+}
+
+.trustStats {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.trustStats span {
+  display: block;
+  font-size: 2rem;
+  font-weight: 700;
+}
+
+.trustStats p {
+  text-transform: none;
+  letter-spacing: 0;
+  font-size: 0.95rem;
+}
+
+@media (max-width: 900px) {
+  .trust {
+    grid-template-columns: 1fr;
+  }
+
+  .trustStats {
+    justify-content: flex-start;
+  }
+}
+
+@media (max-width: 600px) {
+  .heroActions {
+    flex-direction: column;
+  }
+
+  .primaryAction,
+  .secondaryAction {
+    width: 100%;
+    text-align: center;
+  }
+}
+
+
