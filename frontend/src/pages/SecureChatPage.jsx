@@ -6,7 +6,7 @@ const SecureChatPage = () => (
   <ModulePageLayout
     tag="Secure Chat"
     title="Encrypted conversations without compromise"
-    subtitle="Protect sensitive collaboration with end-to-end encrypted messaging, watermarking, and configurable data retention."
+    subtitle="End-to-end secure messaging for your team. Communicate sensitive information without worrying about interception or data breaches."
     highlights={[
       'Zero-trust messaging',
       'Per-thread encryption keys',

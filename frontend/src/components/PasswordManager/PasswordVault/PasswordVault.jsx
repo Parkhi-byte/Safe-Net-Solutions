@@ -5,6 +5,7 @@ import PasswordForm from '../PasswordForm/PasswordForm';
 import CategoriesFilter from '../CategoriesFilter/CategoriesFilter';
 import SecurityOverview from '../SecurityOverview/SecurityOverview';
 import styles from './PasswordVault.module.css';
+import { Lock, Search, Plus, X, List, Grid, ShieldCheck } from 'lucide-react';
 
 const PasswordVault = () => {
   const {
@@ -49,7 +50,7 @@ const PasswordVault = () => {
     return (
       <div className={styles.lockedScreen}>
         <div className={styles.lockedContent}>
-          <div className={styles.lockIcon}>🔒</div>
+          <div className={styles.lockIcon}><Lock className="w-16 h-16 text-primary" /></div>
           <h2 className={styles.lockedTitle}>Vault Locked</h2>
           <p className={styles.lockedText}>
             Your password vault has been locked due to inactivity.
@@ -75,7 +76,7 @@ const PasswordVault = () => {
         <div className={styles.header}>
           <div className={styles.headerContent}>
             <h1 className={styles.title}>
-              <span className={styles.titleIcon}>🔐</span>
+              <span className={styles.titleIcon}><ShieldCheck className="w-8 h-8 text-primary inline-block mr-2" /></span>
               Password Manager
             </h1>
             <p className={styles.subtitle}>
@@ -86,7 +87,7 @@ const PasswordVault = () => {
             className={styles.addButton}
             onClick={handleAddPassword}
           >
-            <span className={styles.addIcon}>+</span>
+            <span className={styles.addIcon}><Plus className="w-4 h-4 mr-2" /></span>
             Add Password
           </button>
         </div>
@@ -95,7 +96,7 @@ const PasswordVault = () => {
 
         <div className={styles.controls}>
           <div className={styles.searchContainer}>
-            <span className={styles.searchIcon}>🔍</span>
+            <span className={styles.searchIcon}><Search className="w-5 h-5 text-gray-400" /></span>
             <input
               type="text"
               placeholder="Search passwords..."
@@ -115,7 +116,7 @@ const PasswordVault = () => {
                 }}
                 aria-label="Clear search"
               >
-                ×
+                <X className="w-4 h-4" />
               </button>
             )}
           </div>
@@ -144,7 +145,7 @@ const PasswordVault = () => {
                 aria-label="List view"
                 title="List view"
               >
-                ☰
+                <List className="w-5 h-5" />
               </button>
               <button
                 className={`${styles.viewButton} ${viewMode === 'grid' ? styles.active : ''}`}
@@ -155,7 +156,7 @@ const PasswordVault = () => {
                 aria-label="Grid view"
                 title="Grid view"
               >
-                ⊞
+                <Grid className="w-5 h-5" />
               </button>
             </div>
           </div>
@@ -165,7 +166,7 @@ const PasswordVault = () => {
 
         {filteredPasswords.length === 0 ? (
           <div className={styles.emptyState}>
-            <div className={styles.emptyIcon}>🔍</div>
+            <div className={styles.emptyIcon}><Search className="w-12 h-12 text-gray-300" /></div>
             <h3 className={styles.emptyTitle}>
               {searchTerm ? 'No passwords found' : 'No passwords yet'}
             </h3>

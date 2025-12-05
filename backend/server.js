@@ -5,6 +5,7 @@ const http = require('http');
 const { Server } = require('socket.io');
 const connectDB = require('./config/db');
 const path = require('path');
+const { errorHandler } = require('./middleware/errorMiddleware');
 
 dotenv.config();
 
@@ -48,6 +49,9 @@ io.on('connection', (socket) => {
         console.log('User disconnected:', socket.id);
     });
 });
+
+
+app.use(errorHandler);
 
 const PORT = process.env.PORT || 5000;
 

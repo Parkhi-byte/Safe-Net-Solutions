@@ -6,7 +6,7 @@ const PasswordManagerPage = () => (
   <ModulePageLayout
     tag="Password Manager"
     title="Centralized credential intelligence"
-    subtitle="Secure credential storage with enterprise-grade encryption, breach monitoring, and automated password hygiene workflows."
+    subtitle="Secure credential storage with enterprise-grade encryption. Never lose access to critical accounts with our centralized password vault."
     highlights={[
       'Adaptive password policies',
       'Real-time breach alerts',

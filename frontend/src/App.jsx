@@ -16,15 +16,15 @@ import PasswordManagerPage from './pages/PasswordManagerPage';
 import SecureChatPage from './pages/SecureChatPage';
 import FileSharingPage from './pages/FileSharingPage';
 import VulnerabilityScannerPage from './pages/VulnerabilityScannerPage';
-import './App.css';
 import { AuthProvider } from './contexts/AuthContext';
 import PrivateRoute from './components/PrivateRoute';
 import LoginPage from './pages/LoginPage';
 import RegisterPage from './pages/RegisterPage';
+import DashboardPage from './pages/DashboardPage';
 
 function HomePage() {
   return (
-    <div className="home-page">
+    <div className="flex flex-col min-h-screen">
       <Hero />
       <Features />
       <HowItWorks />
@@ -42,7 +42,7 @@ function App() {
         <ChatProvider>
           <FileProvider>
             <Router>
-              <div className="App">
+              <div className="flex flex-col min-h-screen">
                 <Header />
                 <Routes>
                   <Route path="/" element={<HomePage />} />
@@ -50,6 +50,14 @@ function App() {
                   <Route path="/pricing" element={<PricingPage />} />
                   <Route path="/login" element={<LoginPage />} />
                   <Route path="/register" element={<RegisterPage />} />
+                  <Route
+                    path="/dashboard"
+                    element={
+                      <PrivateRoute>
+                        <DashboardPage />
+                      </PrivateRoute>
+                    }
+                  />
                   <Route
                     path="/password-manager"
                     element={

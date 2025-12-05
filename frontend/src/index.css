@@ -1,62 +1,16 @@
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
+@import "tailwindcss";
+
+@theme {
+  --font-sans: 'Inter', sans-serif;
+  --color-primary: #1a4d7a;
+  --color-primary-dark: #0f3a5a;
+  --color-primary-light: #2d6ba3;
+  --color-accent: #00d4aa;
+  --color-accent-dark: #00b894;
 }
 
-html {
-  scroll-behavior: smooth;
+@layer base {
+  body {
+    @apply text-gray-900 bg-gray-50;
+  }
 }
-
-:root {
-  --primary-blue: #1a4d7a;
-  --primary-blue-dark: #0f3a5a;
-  --primary-blue-light: #2d6ba3;
-  --accent-green: #00d4aa;
-  --accent-green-dark: #00b894;
-  --text-dark: #1a1a1a;
-  --text-light: #666666;
-  --text-white: #ffffff;
-  --bg-light: #f8f9fa;
-  --bg-white: #ffffff;
-  --border-color: #e0e0e0;
-  --shadow-sm: 0 2px 4px rgba(0, 0, 0, 0.1);
-  --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.15);
-  --shadow-lg: 0 8px 24px rgba(0, 0, 0, 0.2);
-  --transition: all 0.3s ease;
-}
-
-body {
-  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  color: var(--text-dark);
-  line-height: 1.6;
-  overflow-x: hidden;
-}
-
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
-}
-
-a {
-  text-decoration: none;
-  color: inherit;
-}
-
-button {
-  font-family: inherit;
-  cursor: pointer;
-  border: none;
-  outline: none;
-}
-
-img {
-  max-width: 100%;
-  height: auto;
-  display: block;
-}
-

@@ -28,7 +28,7 @@ const SecureFileSharingPage = () => {
     <ModulePageLayout
       tag="Secure File Sharing"
       title="Zero-trust file operations for hybrid teams"
-      subtitle="Upload, encrypt, watermark, and share critical assets with full auditability and automated access revocation."
+      subtitle="Protected document transfer with access controls and expiration dates. Share confidential files with confidence and track access."
       highlights={['Drag & drop uploads', 'End-to-end encryption badges', 'Real-time access monitoring']}
     >
       <FileManagerLayout
