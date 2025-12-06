@@ -277,7 +277,7 @@ export const FileProvider = ({ children }) => {
       const file = files.find((item) => item._id === fileId);
       if (!file) return;
       // In real app, this would be a secure download link
-      window.open(`http://localhost:5000/${file.path}`, '_blank');
+      window.open(`http://localhost:9800/${file.path}`, '_blank');
 
       addAuditEntry({
         action: 'download',

@@ -2,15 +2,16 @@ import React from 'react';
 import { usePassword } from '../../../contexts/PasswordContext';
 import { Link } from 'react-router-dom';
 import styles from './SecurityOverview.module.css';
+import { Lock, AlertTriangle, RefreshCw, ShieldCheck, ArrowRight, ShieldAlert } from 'lucide-react';
 
 const SecurityOverview = () => {
   const { getSecurityStats } = usePassword();
   const stats = getSecurityStats();
 
   const getScoreColor = (score) => {
-    if (score >= 80) return '#4caf50';
-    if (score >= 60) return '#ff9800';
-    return '#f44336';
+    if (score >= 80) return '#10b981'; // emerald-500
+    if (score >= 60) return '#f59e0b'; // amber-500
+    return '#ef4444'; // red-500
   };
 
   const getScoreLabel = (score) => {
@@ -24,14 +25,17 @@ const SecurityOverview = () => {
     <div className={styles.overview}>
       <div className={styles.header}>
         <h2 className={styles.title}>Security Overview</h2>
-        <Link to="/password-manager" className={styles.viewAll}>
-          View All →
-        </Link>
+        {/* Only show View All link if we are NOT on the password manager page already.
+            Assuming SecurityOverview might be used on Dashboard too.
+            If used inside PasswordVault which is on /password-manager, this link is redundant but harmless.
+        */}
       </div>
 
       <div className={styles.statsGrid}>
         <div className={styles.statCard}>
-          <div className={styles.statIcon}>🔐</div>
+          <div className={styles.statIcon}>
+            <Lock className="w-6 h-6 text-blue-500" />
+          </div>
           <div className={styles.statContent}>
             <div className={styles.statValue}>{stats.totalCount}</div>
             <div className={styles.statLabel}>Total Passwords</div>
@@ -39,7 +43,9 @@ const SecurityOverview = () => {
         </div>
 
         <div className={`${styles.statCard} ${stats.weakCount > 0 ? styles.warning : ''}`}>
-          <div className={styles.statIcon}>⚠️</div>
+          <div className={`${styles.statIcon} ${stats.weakCount > 0 ? 'bg-orange-100' : ''}`}>
+            <AlertTriangle className={`w-6 h-6 ${stats.weakCount > 0 ? 'text-orange-500' : 'text-gray-400'}`} />
+          </div>
           <div className={styles.statContent}>
             <div className={styles.statValue}>{stats.weakCount}</div>
             <div className={styles.statLabel}>Weak Passwords</div>
@@ -50,7 +56,9 @@ const SecurityOverview = () => {
         </div>
 
         <div className={`${styles.statCard} ${stats.reusedCount > 0 ? styles.warning : ''}`}>
-          <div className={styles.statIcon}>🔄</div>
+          <div className={`${styles.statIcon} ${stats.reusedCount > 0 ? 'bg-orange-100' : ''}`}>
+            <RefreshCw className={`w-6 h-6 ${stats.reusedCount > 0 ? 'text-orange-500' : 'text-gray-400'}`} />
+          </div>
           <div className={styles.statContent}>
             <div className={styles.statValue}>{stats.reusedCount}</div>
             <div className={styles.statLabel}>Reused Passwords</div>
@@ -61,9 +69,11 @@ const SecurityOverview = () => {
         </div>
 
         <div className={styles.statCard}>
-          <div className={styles.statIcon}>🛡️</div>
+          <div className={styles.statIcon}>
+            <ShieldCheck className="w-6 h-6 text-emerald-500" />
+          </div>
           <div className={styles.statContent}>
-            <div 
+            <div
               className={styles.statValue}
               style={{ color: getScoreColor(stats.securityScore) }}
             >
@@ -71,7 +81,7 @@ const SecurityOverview = () => {
             </div>
             <div className={styles.statLabel}>
               Security Score
-              <span className={styles.scoreLabel}>
+              <span className={styles.scoreLabel} style={{ color: getScoreColor(stats.securityScore) }}>
                 ({getScoreLabel(stats.securityScore)})
               </span>
             </div>
@@ -83,7 +93,9 @@ const SecurityOverview = () => {
         <div className={styles.alerts}>
           {stats.weakCount > 0 && (
             <div className={styles.alert}>
-              <span className={styles.alertIcon}>⚠️</span>
+              <span className={styles.alertIcon}>
+                <ShieldAlert className="w-5 h-5 text-red-500" />
+              </span>
               <div className={styles.alertContent}>
                 <strong>Weak Passwords Detected</strong>
                 <p>You have {stats.weakCount} password{stats.weakCount !== 1 ? 's' : ''} that need strengthening.</p>
@@ -92,26 +104,15 @@ const SecurityOverview = () => {
           )}
           {stats.reusedCount > 0 && (
             <div className={styles.alert}>
-              <span className={styles.alertIcon}>🔄</span>
+              <span className={styles.alertIcon}>
+                <RefreshCw className="w-5 h-5 text-orange-500" />
+              </span>
               <div className={styles.alertContent}>
                 <strong>Reused Passwords Warning</strong>
                 <p>You're using the same password for {stats.reusedCount} account{stats.reusedCount !== 1 ? 's' : ''}. Consider using unique passwords.</p>
               </div>
             </div>
           )}
-        </div>
-      )}
-
-      {stats.totalCount === 0 && (
-        <div className={styles.emptyState}>
-          <div className={styles.emptyIcon}>🔒</div>
-          <h3 className={styles.emptyTitle}>No Passwords Yet</h3>
-          <p className={styles.emptyText}>
-            Start securing your accounts by adding your first password.
-          </p>
-          <Link to="/password-manager" className={styles.emptyButton}>
-            Add Your First Password
-          </Link>
         </div>
       )}
     </div>

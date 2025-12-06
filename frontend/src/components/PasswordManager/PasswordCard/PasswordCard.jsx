@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { usePassword } from '../../../contexts/PasswordContext';
 import { copyToClipboard, getFaviconUrl } from '../../../utils/passwordUtils';
+import { Copy, Check, Eye, EyeOff, Edit2, Trash2, ExternalLink } from 'lucide-react';
 import styles from './PasswordCard.module.css';
 
 const PasswordCard = ({ password: pwd, onEdit }) => {
@@ -49,8 +50,10 @@ const PasswordCard = ({ password: pwd, onEdit }) => {
     <div className={styles.card}>
       <div className={styles.cardHeader}>
         <div className={styles.websiteInfo}>
-          {faviconUrl && (
+          {faviconUrl ? (
             <img src={faviconUrl} alt="" className={styles.favicon} />
+          ) : (
+            <div className={styles.faviconPlaceholder}>{pwd.website.charAt(0).toUpperCase()}</div>
           )}
           <div className={styles.websiteDetails}>
             <h3 className={styles.websiteName}>{pwd.website}</h3>
@@ -63,6 +66,7 @@ const PasswordCard = ({ password: pwd, onEdit }) => {
                 onClick={updateActivity}
               >
                 {pwd.url.replace(/^https?:\/\//, '')}
+                <ExternalLink size={12} className={styles.linkIcon} />
               </a>
             )}
           </div>
@@ -86,8 +90,9 @@ const PasswordCard = ({ password: pwd, onEdit }) => {
               className={`${styles.copyBtn} ${copiedField === 'username' ? styles.copied : ''}`}
               onClick={() => handleCopy(pwd.username, 'username')}
               aria-label="Copy username"
+              title="Copy username"
             >
-              {copiedField === 'username' ? '✓' : '📋'}
+              {copiedField === 'username' ? <Check size={16} /> : <Copy size={16} />}
             </button>
           </div>
         </div>
@@ -108,15 +113,17 @@ const PasswordCard = ({ password: pwd, onEdit }) => {
                 updateActivity();
               }}
               aria-label={showPassword ? 'Hide password' : 'Show password'}
+              title={showPassword ? 'Hide password' : 'Show password'}
             >
-              {showPassword ? '👁️' : '👁️‍🗨️'}
+              {showPassword ? <EyeOff size={16} /> : <Eye size={16} />}
             </button>
             <button
               className={`${styles.copyBtn} ${copiedField === 'password' ? styles.copied : ''}`}
               onClick={() => handleCopy(pwd.password, 'password')}
               aria-label="Copy password"
+              title="Copy password"
             >
-              {copiedField === 'password' ? '✓' : '📋'}
+              {copiedField === 'password' ? <Check size={16} /> : <Copy size={16} />}
             </button>
           </div>
         </div>
@@ -128,7 +135,8 @@ const PasswordCard = ({ password: pwd, onEdit }) => {
               className={styles.strengthFill}
               style={{
                 width: getStrengthWidth(pwd.strength),
-                backgroundColor: getStrengthColor()
+                backgroundColor: getStrengthColor(),
+                boxShadow: `0 0 10px ${getStrengthColor()}`
               }}
             />
           </div>
@@ -156,13 +164,13 @@ const PasswordCard = ({ password: pwd, onEdit }) => {
             updateActivity();
           }}
         >
-          ✏️ Edit
+          <Edit2 size={16} /> Edit
         </button>
         <button
           className={`${styles.actionBtn} ${styles.deleteBtn}`}
           onClick={() => setShowDeleteConfirm(true)}
         >
-          🗑️ Delete
+          <Trash2 size={16} /> Delete
         </button>
       </div>
 

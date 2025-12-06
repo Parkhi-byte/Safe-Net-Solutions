@@ -96,7 +96,7 @@ const PasswordVault = () => {
 
         <div className={styles.controls}>
           <div className={styles.searchContainer}>
-            <span className={styles.searchIcon}><Search className="w-5 h-5 text-gray-400" /></span>
+
             <input
               type="text"
               placeholder="Search passwords..."

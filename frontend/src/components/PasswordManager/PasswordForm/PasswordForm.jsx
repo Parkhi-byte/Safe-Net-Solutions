@@ -3,6 +3,7 @@ import { usePassword } from '../../../contexts/PasswordContext';
 import { calculatePasswordStrength, isValidUrl } from '../../../utils/passwordUtils';
 import PasswordGenerator from '../PasswordGenerator/PasswordGenerator';
 import PasswordStrengthMeter from '../PasswordStrengthMeter/PasswordStrengthMeter';
+import { X, Wand2 } from 'lucide-react';
 import styles from './PasswordForm.module.css';
 
 const PasswordForm = ({ isOpen, onClose, editingPassword = null }) => {
@@ -98,7 +99,7 @@ const PasswordForm = ({ isOpen, onClose, editingPassword = null }) => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    
+
     if (!validate()) {
       return;
     }
@@ -120,10 +121,10 @@ const PasswordForm = ({ isOpen, onClose, editingPassword = null }) => {
       } else {
         addPassword(passwordData);
       }
-      
+
       // Small delay for UX
       await new Promise(resolve => setTimeout(resolve, 300));
-      
+
       onClose();
       setFormData({
         website: '',
@@ -154,7 +155,7 @@ const PasswordForm = ({ isOpen, onClose, editingPassword = null }) => {
             onClick={onClose}
             aria-label="Close"
           >
-            ×
+            <X className="w-6 h-6" />
           </button>
         </div>
 
@@ -223,10 +224,11 @@ const PasswordForm = ({ isOpen, onClose, editingPassword = null }) => {
                 className={styles.generatorToggle}
                 onClick={() => setShowGenerator(!showGenerator)}
               >
-                {showGenerator ? '✕ Hide Generator' : '🔧 Use Generator'}
+                <Wand2 className="w-4 h-4 mr-2" />
+                {showGenerator ? 'Hide Generator' : 'Use Generator'}
               </button>
             </div>
-            
+
             {showGenerator ? (
               <PasswordGenerator onPasswordGenerated={handlePasswordGenerated} />
             ) : (

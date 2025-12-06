@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { generatePassword } from '../../../utils/passwordUtils';
 import { copyToClipboard } from '../../../utils/passwordUtils';
 import PasswordStrengthMeter from '../PasswordStrengthMeter/PasswordStrengthMeter';
+import { Copy, Check, RefreshCw, ArrowRight } from 'lucide-react';
 import styles from './PasswordGenerator.module.css';
 
 const PasswordGenerator = ({ onPasswordGenerated }) => {
@@ -58,7 +59,7 @@ const PasswordGenerator = ({ onPasswordGenerated }) => {
   return (
     <div className={styles.generator}>
       <h3 className={styles.title}>Password Generator</h3>
-      
+
       <div className={styles.passwordDisplay}>
         <input
           type="text"
@@ -73,7 +74,7 @@ const PasswordGenerator = ({ onPasswordGenerated }) => {
           disabled={!password}
           aria-label="Copy password"
         >
-          {copied ? '✓ Copied' : '📋 Copy'}
+          {copied ? <Check size={18} /> : <Copy size={18} />}
         </button>
       </div>
 
@@ -91,6 +92,7 @@ const PasswordGenerator = ({ onPasswordGenerated }) => {
             value={length}
             onChange={(e) => setLength(parseInt(e.target.value))}
             className={styles.slider}
+            style={{ '--progress': `${((length - 8) / (32 - 8)) * 100}%` }}
           />
           <div className={styles.lengthLabels}>
             <span>8</span>
@@ -106,9 +108,9 @@ const PasswordGenerator = ({ onPasswordGenerated }) => {
               onChange={() => handleOptionChange('includeUppercase')}
               className={styles.checkbox}
             />
-            <span>Uppercase (A-Z)</span>
+            <span>ABC</span>
           </label>
-          
+
           <label className={styles.checkboxLabel}>
             <input
               type="checkbox"
@@ -116,9 +118,9 @@ const PasswordGenerator = ({ onPasswordGenerated }) => {
               onChange={() => handleOptionChange('includeLowercase')}
               className={styles.checkbox}
             />
-            <span>Lowercase (a-z)</span>
+            <span>abc</span>
           </label>
-          
+
           <label className={styles.checkboxLabel}>
             <input
               type="checkbox"
@@ -126,9 +128,9 @@ const PasswordGenerator = ({ onPasswordGenerated }) => {
               onChange={() => handleOptionChange('includeNumbers')}
               className={styles.checkbox}
             />
-            <span>Numbers (0-9)</span>
+            <span>123</span>
           </label>
-          
+
           <label className={styles.checkboxLabel}>
             <input
               type="checkbox"
@@ -136,7 +138,7 @@ const PasswordGenerator = ({ onPasswordGenerated }) => {
               onChange={() => handleOptionChange('includeSymbols')}
               className={styles.checkbox}
             />
-            <span>Symbols (!@#$%...)</span>
+            <span>#$&</span>
           </label>
         </div>
       </div>
@@ -146,14 +148,14 @@ const PasswordGenerator = ({ onPasswordGenerated }) => {
           className={styles.generateButton}
           onClick={handleGenerate}
         >
-          🔄 Generate New
+          <RefreshCw size={18} /> Regenerate
         </button>
         {onPasswordGenerated && password && (
           <button
             className={styles.useButton}
             onClick={handleUsePassword}
           >
-            ✓ Use This Password
+            Use Password <ArrowRight size={18} />
           </button>
         )}
       </div>

@@ -25,7 +25,7 @@ export const ChatProvider = ({ children }) => {
   useEffect(() => {
     if (isAuthenticated && user) {
       // Connect to Socket.io
-      socket.current = io('http://localhost:5000');
+      socket.current = io('http://localhost:9800');
 
       socket.current.emit('join_chat', user._id);
 
