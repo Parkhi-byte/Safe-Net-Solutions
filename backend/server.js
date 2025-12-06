@@ -22,7 +22,8 @@ const io = new Server(server, {
 });
 
 app.use(cors());
-app.use(express.json());
+app.use(express.json({ limit: '300mb' }));
+app.use(express.urlencoded({ limit: '300mb', extended: true }));
 app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
 
 // Routes
@@ -31,6 +32,7 @@ app.use('/api/passwords', require('./routes/passwordRoutes'));
 app.use('/api/files', require('./routes/fileRoutes'));
 app.use('/api/chat', require('./routes/chatRoutes'));
 app.use('/api/folders', require('./routes/folderRoutes'));
+app.use('/api/scanner', require('./routes/scannerRoutes'));
 
 // Socket.io
 io.on('connection', (socket) => {

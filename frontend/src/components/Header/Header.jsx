@@ -52,6 +52,7 @@ const Header = () => {
           {[
             { to: '/', label: 'Home' },
             { to: '/features', label: 'Features' },
+            { to: '/about', label: 'About Us' },
             { to: '/pricing', label: 'Pricing' },
             { to: '/secure-chat', label: 'Secure Chat' },
             ...(isAuthenticated ? [{ to: '/dashboard', label: 'Dashboard' }] : []),
@@ -125,6 +126,7 @@ const Header = () => {
           {[
             { to: '/', label: 'Home' },
             { to: '/features', label: 'Features' },
+            { to: '/about', label: 'About Us' },
             { to: '/pricing', label: 'Pricing' },
             { to: '/secure-chat', label: 'Secure Chat' },
             ...(isAuthenticated ? [{ to: '/dashboard', label: 'Dashboard' }] : []),

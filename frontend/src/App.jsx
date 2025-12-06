@@ -12,6 +12,7 @@ import SocialProof from './components/SocialProof/SocialProof';
 import PricingPreview from './components/PricingPreview/PricingPreview';
 import FAQ from './components/FAQ/FAQ';
 import Footer from './components/Footer/Footer';
+import AboutUs from './pages/AboutUs';
 import PricingPage from './pages/PricingPage';
 import PasswordManagerPage from './pages/PasswordManagerPage';
 import SecureChatPage from './pages/SecureChatPage';
@@ -49,6 +50,7 @@ function App() {
                   <Routes>
                     <Route path="/" element={<HomePage />} />
                     <Route path="/features" element={<HomePage />} />
+                    <Route path="/about" element={<AboutUs />} />
                     <Route path="/pricing" element={<PricingPage />} />
                     <Route path="/login" element={<LoginPage />} />
                     <Route path="/register" element={<RegisterPage />} />
