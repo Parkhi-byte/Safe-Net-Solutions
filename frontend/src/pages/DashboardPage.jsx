@@ -14,7 +14,7 @@ const DashboardPage = () => {
     // Connect to contexts for real data
     const { passwords, getSecurityStats } = usePassword();
     const { contacts } = useChat();
-    const { files, storageUsage } = useFileContext();
+    const { files, storageUsage, auditLog } = useFileContext();
 
     const [securityScore, setSecurityScore] = useState(0);
     const [stats, setStats] = useState({
@@ -153,28 +153,30 @@ const DashboardPage = () => {
                             Recent Activity
                         </h3>
                         <div className="space-y-4">
-                            {/* Mock activity items */}
-                            {[1].map((_, i) => (
-                                <div key={i} className="flex items-center gap-4 p-3 hover:bg-gray-50 rounded-xl transition-colors border border-transparent hover:border-gray-100">
-                                    <div className="w-10 h-10 rounded-full bg-blue-50 flex items-center justify-center text-blue-600">
-                                        <Shield className="w-5 h-5" />
-                                    </div>
-                                    <div className="flex-1">
-                                        <p className="text-sm font-medium text-gray-900">Security Audit Completed</p>
-                                        <p className="text-xs text-gray-500">System scan finished successfully with no critical issues found.</p>
-                                    </div>
-                                    <span className="text-xs text-gray-400">2h ago</span>
-                                </div>
-                            ))}
-                            <div className="flex items-center gap-4 p-3 hover:bg-gray-50 rounded-xl transition-colors border border-transparent hover:border-gray-100">
-                                <div className="w-10 h-10 rounded-full bg-green-50 flex items-center justify-center text-green-600">
-                                    <CheckCircle className="w-5 h-5" />
-                                </div>
-                                <div className="flex-1">
-                                    <p className="text-sm font-medium text-gray-900">System Optimization</p>
-                                    <p className="text-xs text-gray-500">Database performance tuning completed automatically.</p>
-                                </div>
-                                <span className="text-xs text-gray-400">5h ago</span>
+                            <div className="space-y-4">
+                                {auditLog.length > 0 ? (
+                                    auditLog.slice(0, 5).map((log) => (
+                                        <div key={log.id} className="flex items-center gap-4 p-3 hover:bg-gray-50 rounded-xl transition-colors border border-transparent hover:border-gray-100">
+                                            <div className={`w-10 h-10 rounded-full flex items-center justify-center ${log.status?.includes('error') ? 'bg-red-50 text-red-600' : 'bg-blue-50 text-blue-600'
+                                                }`}>
+                                                {log.action === 'upload' ? <FileText className="w-5 h-5" /> :
+                                                    log.action === 'share' ? <MessageSquare className="w-5 h-5" /> :
+                                                        <Activity className="w-5 h-5" />}
+                                            </div>
+                                            <div className="flex-1">
+                                                <p className="text-sm font-medium text-gray-900 capitalize">{log.action.replace('-', ' ')}</p>
+                                                <p className="text-xs text-gray-500">
+                                                    {log.target} - {log.status}
+                                                </p>
+                                            </div>
+                                            <span className="text-xs text-gray-400">
+                                                {new Date(log.timestamp).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}
+                                            </span>
+                                        </div>
+                                    ))
+                                ) : (
+                                    <p className="text-gray-500 text-sm text-center py-4">No recent activity detected.</p>
+                                )}
                             </div>
                         </div>
                     </div>

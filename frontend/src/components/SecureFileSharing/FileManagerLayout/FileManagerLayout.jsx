@@ -45,7 +45,7 @@ const FileManagerLayout = ({
   }, [currentFolder]);
 
   const visibleFolderChildren = useMemo(
-    () => folders.filter((folder) => folder.parentId === currentFolder && folder.id !== 'root'),
+    () => folders.filter((folder) => folder.parentId === currentFolder && folder._id !== 'root'),
     [folders, currentFolder]
   );
 
@@ -126,11 +126,11 @@ const FileManagerLayout = ({
           </div>
           <ul>
             {folders.map((folder) => (
-              <li key={folder.id}>
+              <li key={folder._id}>
                 <button
                   type="button"
-                  className={folder.id === currentFolder ? styles.activeFolder : ''}
-                  onClick={() => setCurrentFolder(folder.id)}
+                  className={folder._id === currentFolder ? styles.activeFolder : ''}
+                  onClick={() => setCurrentFolder(folder._id)}
                   onDoubleClick={() => renameFolder(folder)}
                 >
                   <span>{folder.name}</span>
@@ -155,9 +155,9 @@ const FileManagerLayout = ({
           <div className={styles.breadcrumbs}>
             {breadcrumbs.map((folder, index) => (
               <button
-                key={folder.id}
+                key={folder.id || folder._id}
                 type="button"
-                onClick={() => setCurrentFolder(folder.id)}
+                onClick={() => setCurrentFolder(folder.id || folder._id)}
               >
                 {folder.name}
                 {index < breadcrumbs.length - 1 && <span>/</span>}
@@ -200,7 +200,7 @@ const FileManagerLayout = ({
             </button>
             <select value={moveTarget} onChange={(event) => setMoveTarget(event.target.value)}>
               {folders.map((folder) => (
-                <option value={folder.id} key={folder.id}>
+                <option value={folder._id} key={folder._id}>
                   {folder.name}
                 </option>
               ))}

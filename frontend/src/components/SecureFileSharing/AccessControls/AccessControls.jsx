@@ -8,7 +8,7 @@ const AccessControls = ({ focusFile, onClearFocus }) => {
   const sharedFiles = useMemo(() => {
     const list = files.filter((file) => file.shareLinks?.length);
     if (focusFile && focusFile.shareLinks?.length) {
-      return [focusFile, ...list.filter((file) => file.id !== focusFile.id)];
+      return [focusFile, ...list.filter((file) => file._id !== focusFile._id)];
     }
     return list;
   }, [files, focusFile]);
@@ -42,7 +42,7 @@ const AccessControls = ({ focusFile, onClearFocus }) => {
         <div className={styles.table}>
           {sharedFiles.slice(0, 3).map((file) =>
             file.shareLinks.map((link) => (
-              <article key={link.id}>
+              <article key={link._id}>
                 <div>
                   <strong>{file.name}</strong>
                   <p>Expires {formatDate(link.expires)}</p>
@@ -55,7 +55,7 @@ const AccessControls = ({ focusFile, onClearFocus }) => {
                     {link.remainingDownloads}/{link.downloadLimit} downloads
                   </span>
                 </div>
-                <button type="button" onClick={() => revokeShareLink(file.id, link.id)}>
+                <button type="button" onClick={() => revokeShareLink(file._id, link._id)}>
                   Revoke
                 </button>
               </article>

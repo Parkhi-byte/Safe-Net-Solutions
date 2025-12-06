@@ -1,5 +1,6 @@
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import ErrorBoundary from './components/ErrorBoundary';
 import { PasswordProvider } from './contexts/PasswordContext';
 import { ChatProvider } from './contexts/ChatContext';
 import { FileProvider } from './contexts/FileContext';
@@ -44,53 +45,55 @@ function App() {
             <Router>
               <div className="flex flex-col min-h-screen">
                 <Header />
-                <Routes>
-                  <Route path="/" element={<HomePage />} />
-                  <Route path="/features" element={<HomePage />} />
-                  <Route path="/pricing" element={<PricingPage />} />
-                  <Route path="/login" element={<LoginPage />} />
-                  <Route path="/register" element={<RegisterPage />} />
-                  <Route
-                    path="/dashboard"
-                    element={
-                      <PrivateRoute>
-                        <DashboardPage />
-                      </PrivateRoute>
-                    }
-                  />
-                  <Route
-                    path="/password-manager"
-                    element={
-                      <PrivateRoute>
-                        <PasswordManagerPage />
-                      </PrivateRoute>
-                    }
-                  />
-                  <Route
-                    path="/secure-chat"
-                    element={
-                      <PrivateRoute>
-                        <SecureChatPage />
-                      </PrivateRoute>
-                    }
-                  />
-                  <Route
-                    path="/file-sharing"
-                    element={
-                      <PrivateRoute>
-                        <FileSharingPage />
-                      </PrivateRoute>
-                    }
-                  />
-                  <Route
-                    path="/vulnerability-scanner"
-                    element={
-                      <PrivateRoute>
-                        <VulnerabilityScannerPage />
-                      </PrivateRoute>
-                    }
-                  />
-                </Routes>
+                <ErrorBoundary>
+                  <Routes>
+                    <Route path="/" element={<HomePage />} />
+                    <Route path="/features" element={<HomePage />} />
+                    <Route path="/pricing" element={<PricingPage />} />
+                    <Route path="/login" element={<LoginPage />} />
+                    <Route path="/register" element={<RegisterPage />} />
+                    <Route
+                      path="/dashboard"
+                      element={
+                        <PrivateRoute>
+                          <DashboardPage />
+                        </PrivateRoute>
+                      }
+                    />
+                    <Route
+                      path="/password-manager"
+                      element={
+                        <PrivateRoute>
+                          <PasswordManagerPage />
+                        </PrivateRoute>
+                      }
+                    />
+                    <Route
+                      path="/secure-chat"
+                      element={
+                        <PrivateRoute>
+                          <SecureChatPage />
+                        </PrivateRoute>
+                      }
+                    />
+                    <Route
+                      path="/file-sharing"
+                      element={
+                        <PrivateRoute>
+                          <FileSharingPage />
+                        </PrivateRoute>
+                      }
+                    />
+                    <Route
+                      path="/vulnerability-scanner"
+                      element={
+                        <PrivateRoute>
+                          <VulnerabilityScannerPage />
+                        </PrivateRoute>
+                      }
+                    />
+                  </Routes>
+                </ErrorBoundary>
                 <Footer />
               </div>
             </Router>

@@ -81,7 +81,6 @@ const Hero = () => {
 
               <button
                 className="inline-flex items-center justify-center gap-2 px-8 py-4 bg-white text-gray-700 font-bold rounded-xl border border-gray-200 hover:bg-gray-50 hover:border-gray-300 transition-all min-w-[200px]"
-                onClick={() => console.log('Demo')}
               >
                 <Play className="w-5 h-5 fill-current" />
                 <span>Watch Demo</span>

@@ -38,19 +38,19 @@ const FilePreview = ({ file, onClose, onShare }) => {
             </div>
             <div className={styles.metaBlock}>
               <p>Uploaded</p>
-              <strong>{formatDate(file.uploadDate)}</strong>
+              <strong>{formatDate(file.createdAt)}</strong>
             </div>
             <div className={styles.metaBlock}>
-              <p>Uploaded by</p>
-              <strong>{file.uploadedBy}</strong>
+              <p>Owner</p>
+              <strong>You</strong>
             </div>
             <div className={styles.metaBlock}>
-              <p>Permissions</p>
-              <strong>{file.permissions.canView?.length} viewers</strong>
+              <p>Shared with</p>
+              <strong>{file.shareLinks?.length || 0} links</strong>
             </div>
 
             <div className={styles.actions}>
-              <button type="button" onClick={() => downloadFile(file.id)}>
+              <button type="button" onClick={() => downloadFile(file._id)}>
                 Download
               </button>
               <button type="button" onClick={() => onShare(file)}>

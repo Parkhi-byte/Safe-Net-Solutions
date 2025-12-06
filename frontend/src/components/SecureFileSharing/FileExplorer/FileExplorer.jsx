@@ -1,6 +1,7 @@
-import React, { useMemo, useState } from 'react';
+import React, { useCallback, useMemo, useState } from 'react';
 import { useFileContext } from '../../../contexts/FileContext';
-import { formatDate, formatBytes, getTypeColor } from '../../../utils/fileUtils';
+import { formatBytes } from '../../../utils/fileUtils';
+import FileCard from './FileCard';
 import styles from './FileExplorer.module.css';
 
 const FileExplorer = ({ folders = [], files = [], onPreview, onShare, onAccess }) => {
@@ -10,77 +11,22 @@ const FileExplorer = ({ folders = [], files = [], onPreview, onShare, onAccess }
 
   const sortedFolders = useMemo(() => [...folders].sort((a, b) => a.name.localeCompare(b.name)), [folders]);
 
-  const handleShare = (file) => onShare && onShare(file.id);
-  const handlePreview = (file) => onPreview && onPreview(file);
-  const handleAccess = (file) => onAccess && onAccess(file);
-  const handleRename = (file) => {
+  const handleShare = useCallback((file) => onShare && onShare(file._id), [onShare]);
+  const handlePreview = useCallback((file) => onPreview && onPreview(file), [onPreview]);
+  const handleAccess = useCallback((file) => onAccess && onAccess(file), [onAccess]);
+
+  const handleRename = useCallback((file) => {
     const nextName = window.prompt('Rename file', file.name);
     if (nextName && nextName !== file.name) {
-      renameItem(file.id, 'file', nextName.trim());
+      renameItem(file._id, 'file', nextName.trim());
     }
-  };
-  const handleDelete = (file) => {
-    if (window.confirm(`Delete ${file.name}?`)) {
-      deleteFiles([file.id]);
-    }
-  };
+  }, [renameItem]);
 
-  const renderFileCard = (file) => {
-    const isSelected = selectedFiles.includes(file.id);
-    const color = getTypeColor(file.type);
-    return (
-      <article
-        key={file.id}
-        className={`${styles.fileCard} ${isSelected ? styles.selected : ''}`}
-      >
-        <label className={styles.checkbox}>
-          <input
-            type="checkbox"
-            checked={isSelected}
-            onChange={() => toggleSelectFile(file.id)}
-          />
-          <span />
-        </label>
-        <div className={styles.fileIcon} style={{ background: `${color}20`, color }}>
-          {file.type?.slice(0, 3).toUpperCase()}
-        </div>
-        <div className={styles.fileMeta}>
-          <div className={styles.fileHeader}>
-            <h4>{file.name}</h4>
-            {file.watermark && <span className={styles.watermark}>Watermarked</span>}
-          </div>
-          <p>
-            {formatBytes(file.size)} · Uploaded {formatDate(file.uploadDate)} by {file.uploadedBy}
-          </p>
-          <div className={styles.badges}>
-            <span className={styles.badge}>{file.encrypted ? 'Encrypted' : 'Plain'}</span>
-            <span className={styles.badge}>View {file.permissions.canView?.length}</span>
-            <span className={styles.badge}>DL {file.permissions.canDownload?.length}</span>
-          </div>
-        </div>
-        <div className={styles.actions}>
-          <button type="button" onClick={() => handlePreview(file)}>
-            Preview
-          </button>
-          <button type="button" onClick={() => downloadFile(file.id)}>
-            Download
-          </button>
-          <button type="button" onClick={() => handleShare(file)}>
-            Share
-          </button>
-          <button type="button" onClick={() => handleAccess(file)}>
-            Access
-          </button>
-          <button type="button" onClick={() => handleRename(file)}>
-            Rename
-          </button>
-          <button type="button" onClick={() => handleDelete(file)} className={styles.danger}>
-            Delete
-          </button>
-        </div>
-      </article>
-    );
-  };
+  const handleDelete = useCallback((file) => {
+    if (window.confirm(`Delete ${file.name}?`)) {
+      deleteFiles([file._id]);
+    }
+  }, [deleteFiles]);
 
   return (
     <section className={styles.wrapper}>
@@ -112,9 +58,9 @@ const FileExplorer = ({ folders = [], files = [], onPreview, onShare, onAccess }
           {sortedFolders.map((folder) => (
             <button
               type="button"
-              key={folder.id}
+              key={folder._id}
               className={styles.folderCard}
-              onClick={() => setCurrentFolder(folder.id)}
+              onClick={() => setCurrentFolder(folder._id)}
             >
               <span className={styles.folderIcon}>📁</span>
               <div>
@@ -132,10 +78,23 @@ const FileExplorer = ({ folders = [], files = [], onPreview, onShare, onAccess }
           <p>No files match the current filters.</p>
           <small>Upload or adjust filters to continue.</small>
         </div>
-      ) : viewMode === 'grid' ? (
-        <div className={styles.grid}>{files.map(renderFileCard)}</div>
       ) : (
-        <div className={styles.list}>{files.map(renderFileCard)}</div>
+        <div className={viewMode === 'grid' ? styles.grid : styles.list}>
+          {files.map((file) => (
+            <FileCard
+              key={file._id}
+              file={file}
+              isSelected={selectedFiles.includes(file._id)}
+              onToggleSelect={toggleSelectFile}
+              onPreview={handlePreview}
+              onDownload={downloadFile}
+              onShare={handleShare}
+              onAccess={handleAccess}
+              onRename={handleRename}
+              onDelete={handleDelete}
+            />
+          ))}
+        </div>
       )}
     </section>
   );

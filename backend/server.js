@@ -30,6 +30,7 @@ app.use('/api/auth', require('./routes/authRoutes'));
 app.use('/api/passwords', require('./routes/passwordRoutes'));
 app.use('/api/files', require('./routes/fileRoutes'));
 app.use('/api/chat', require('./routes/chatRoutes'));
+app.use('/api/folders', require('./routes/folderRoutes'));
 
 // Socket.io
 io.on('connection', (socket) => {

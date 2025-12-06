@@ -22,20 +22,24 @@ const ShareDialog = ({ file, onClose }) => {
     setForm((prev) => ({ ...prev, [name]: type === 'checkbox' ? checked : value }));
   };
 
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault();
-    shareFile(file.id, {
-      expires: new Date(form.expires).toISOString(),
-      passwordProtected: form.passwordProtected,
-      downloadLimit: Number(form.downloadLimit) || 5,
-      permissions: {
-        level: form.permission,
+    try {
+      const url = await shareFile(file._id || file.id, {
+        expires: new Date(form.expires).toISOString(),
+        passwordProtected: form.passwordProtected,
+        password: form.password,
+        downloadLimit: Number(form.downloadLimit) || 5,
+        permissions: {
+          level: form.permission,
+        },
         recipients: form.recipients.split(',').map((entry) => entry.trim()).filter(Boolean),
         team: form.team,
-      },
-    });
-    setLinkPreview(`https://safenet.com/share/${file.id.slice(-4)}${Date.now().toString(36)}`);
-    setTimeout(onClose, 1500);
+      });
+      setLinkPreview(url);
+    } catch (error) {
+      console.error('Failed to generate link', error);
+    }
   };
 
   return (

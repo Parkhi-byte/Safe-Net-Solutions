@@ -12,7 +12,7 @@ const SecureFileSharingPage = () => {
   const [focusAccessFile, setFocusAccessFile] = useState(null);
 
   const resolveFile = (target) =>
-    typeof target === 'string' ? files.find((file) => file.id === target) : target;
+    typeof target === 'string' ? files.find((file) => (file._id || file.id) === target) : target;
 
   const handlePreview = (file) => setPreviewFile(file);
   const handleShare = (target) => {

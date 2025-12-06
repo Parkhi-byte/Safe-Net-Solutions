@@ -35,11 +35,28 @@ const fileSchema = new mongoose.Schema({
         default: true
     },
     shareLinks: [{
-        url: String,
+        token: {
+            type: String,
+            required: true
+        },
+        recipients: [String],
+        team: String,
+        permissions: {
+            level: {
+                type: String,
+                enum: ['view', 'download', 'edit'],
+                default: 'view'
+            }
+        },
         expires: Date,
         passwordProtected: Boolean,
+        password: String,
         downloadLimit: Number,
-        remainingDownloads: Number
+        remainingDownloads: Number,
+        createdAt: {
+            type: Date,
+            default: Date.now
+        }
     }]
 }, {
     timestamps: true
