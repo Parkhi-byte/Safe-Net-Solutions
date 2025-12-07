@@ -57,7 +57,7 @@ Follow these steps to set up the project locally.
 ### 1. Clone the Repository
 ```bash
 git clone https://github.com/Satyam-xD/Safenet
-cd safenet-solutions
+
 ```
 
 ### 2. Backend Setup
